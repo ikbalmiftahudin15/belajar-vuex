@@ -1,15 +1,13 @@
 <template>
-    <br><br><br>
-    <h1>PRODUK</h1>
     <section class="bg-white py-12 text-gray-700 sm:py-16 lg:py-20">
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-md text-center">
-      <h2 class="font-serif text-2xl font-bold sm:text-3xl">Our featured Aroma Range</h2>
-      <p class="mt-4 text-base text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus faucibus massa dignissim tempus.</p>
+      <h2 class="font-serif text-2xl font-bold sm:text-3xl">PRODUCT</h2>
     </div>
 
-    <div class="mt-10 grid grid-cols-3 gap-6 lg:mt-16 lg:grid-cols-4 lg:gap-4">
-        <div v-for="produk in getproduk" :key="produk.id">
+    <div class="mt-10 grid grid-cols-6 gap-6 lg:mt-10 lg:grid-cols-4 lg:gap-4">
+        <div v-for="produk in getProduk" :key="produk.id">
+            <router-link :to="{name: 'SingleProduk', params: {id: produk.id}}" class="group">
       <article class="relative">
         <div class="aspect-square overflow-hidden">
           <img class="group-hover:scale-125 h-full w-full object-cover transition-all duration-300" :src="produk.image " alt="" />
@@ -50,7 +48,7 @@
           </div>
         </div>
       </article>
-
+    </router-link>
       
       </div>
     </div>
@@ -64,10 +62,10 @@
     
     export default {
         computed: {
-            ...mapGetters('produk', ['getproduk']),
+            ...mapGetters('produk', ['getProduk']),
         },
         methods: {
-            ...mapActions('produk', ['fetchproduk']),
+            ...mapActions('produk', ['fetchProduk']),
             getImage(imageURL) {
                 return {
                     'src': `${imageURL}`,
@@ -77,7 +75,7 @@
             }
         },
         created() {
-            this.fetchproduk();
-        },
-    }
-    </script>
+            this.fetchProduk();
+        }
+   }
+</script>
