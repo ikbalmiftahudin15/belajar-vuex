@@ -2,18 +2,18 @@ const donatur = {
     namespaced: true,
     state: {
         listDonatur: [
-            { name: "Ibal"},
-            { name: "Awa"},
-            { name: "Udin"},
-            { name: "Zahra"},
+            { name: "Riski Amelia"},
+            { name: "Ima Sumadir"},
+            { name: "Andika Viqri"},
+            { name: "Agus Supriadi"},
         ],
     },
     mutations: {
-        //NONE
+
     },
     actions: {
-        //NONE
-    },
+
+    }
 };
 
 export default donatur;

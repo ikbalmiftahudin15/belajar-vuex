@@ -4,8 +4,10 @@ import clients from "./modules/clients";
 import transaksi from "./modules/transaksi";
 import users from "./modules/users";
 import wilayah from "./modules/wilayah";
-import produk from "./modules/produk";
-import kategori from "./modules/kategori"
+import product from "./modules/product";
+import category from "./modules/category";
+import auth from "./modules/auth";
+
 
 const store = createStore({
     state: {
@@ -15,11 +17,12 @@ const store = createStore({
         donatur,
         clients,
         transaksi,
-       users,
-       wilayah,
-     produk,
-     kategori
-    },
+        users,
+        wilayah,
+        product,
+        category,
+        auth
+    }
 });
 
 export default store;

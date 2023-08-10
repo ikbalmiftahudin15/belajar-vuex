@@ -1,6 +1,6 @@
 <template>
     <div class="block w-full overflow-auto scrolling-touch">
-        <table class="w-full max-w-full mb-4 bg-transparent table-hover table-bordered"> 
+        <table class="w-full max-w-full mb-4 bg-transperent table-hover table-bordered">
             <thead>
                 <tr>
                     <th>#</th>
@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(row, index) in listTransaksi" :key="index">
+                <tr v-for="(row, index) in listTransaksi" :key="index" class="text-center">
                     <td>{{ index + 1 }}</td>
                     <td>{{ row.donatur }}</td>
                     <td>{{ row.bantuan }}</td>
@@ -20,9 +20,8 @@
         </table>
     </div>
 </template>
-
 <script>
-    import { mapState } from 'vuex';
+    import { mapState } from 'vuex' 
     export default {
         computed: {
             ...mapState('transaksi', {

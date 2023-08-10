@@ -1,31 +1,34 @@
 import axios from "axios";
 
 const users = {
-    namespaced:true ,
+    namespaced: true,
     state: {
-        userData :[],
+        userData: [],
     },
-    getters:{
-        getUsers:(state) => state.userData,
+    getters: {
+        getUsers: (state) => state.userData,
     },
-    actions:{
+    actions: {
         async fetchUsers({ commit }) {
-            try{
-                const data = await axios.get (
-                    "https://jsonplaceholder.typicode.com/users"
+            try {
+                const data = await axios.get(
+                    "https://fakestoreapi.com/users?limit=5"
                 );
-                commit("SET_USERS",data.data);
+                commit("SET_USERS", data.data);
             } catch (error) {
-                alert(error);
+                alert (error);
                 console.log(error)
             }
         },
     },
     mutations: {
-        SET_USERS(state, users){
-            state.userData = users;
+        SET_USERS(state, users) {
+            state.userData = users
+        },
+        ADD_USER(state, user) {
+            state.userData.push(user);
         },
     },
 };
 
-export default users;
+export default users

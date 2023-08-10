@@ -1,41 +1,70 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter, } from "vue-router";
 import Home from "../views/Home.vue";
-import User from "../views/User.vue";
+import User from "../views/user/Index.vue";
+import UserCreate from "../views/User/Create.vue";
 import Wilayah from "../views/Wilayah.vue";
-import Produk from "../views/Produk.vue";
-import SingleProduk from "../views/SingleProduk.vue"
-import Kategori from "../views/Kategori.vue"
+import Product from "../views/Product.vue";
+import SingleProduct from "../views/SingleProduct.vue";
+import Category from "../views/Category.vue";
+import Login from "../views/Login.vue";
+import Filter from "../views/FilterProduk.vue";
+import store from "../store";
+
 
 const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home,
+        component: Home
     },
     {
-        path: "/users",
+        path: "/user",
         name: "User",
         component: User,
+        meta: { requireLogin: true },
+        
+    },
+    {
+        path: "/user/create",
+        name: "UserCreate",
+        component: UserCreate,
+        meta: { requireLogin: false },
     },
     {
         path: "/wilayah",
         name: "Wilayah",
-        component: Wilayah,
+        component: Wilayah
     },
     {
-        path: "/produk",
-        name: "Produk",
-        component: Produk,
+        path: "/product",
+        name: "Product",
+        component: Product
     },
     {
-        path:"/produk/:id",
-        name: "SingleProduk",
-        component: SingleProduk,
+        path: "/product/:id",
+        name: "SingleProduct",
+        component: SingleProduct
     },
     {
-        path: "/kategori",
-        name: "Kategori",
-        component: Kategori,
+        path: "/category",
+        name: "Category",
+        component: Category
+    },
+    {
+        path: "/category/:category",
+        name: "Filter",
+        component: Filter
+    },
+    {
+        path: "/filter",
+        name: "Filter",
+        component: Filter
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
+        meta: { requireGuest: true },
     },
 ];
 
@@ -44,4 +73,19 @@ const router = createRouter({
     routes,
 });
 
-export default router; 
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireGuest && store.getters["auth/isAuthenticated"]) {
+        next("/");
+    } else {
+        next();
+    }
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireLogin && !store.getters["auth/isAuthenticated"]) {
+        next("/login");
+    } else {
+        next();
+    }
+});
+export default router;
